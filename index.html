@@ -260,7 +260,6 @@
   /* statement */
   .statement-row {
     display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: start;
-    padding-top: var(--s6); border-top: 1px solid var(--hairline);
   }
   .statement-row .label { padding-top: 0.9em; }
   .statement {
@@ -502,7 +501,7 @@
   .concern.flash { animation: flash 1600ms var(--ease); }
   @keyframes flash { 0%, 40% { background: var(--raised); } 100% { background: transparent; } }
   @media (max-width: 900px) { .concern { grid-template-columns: 1fr; gap: var(--s3); } }
-  .concern-row { display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: baseline; margin-top: var(--s6); }
+  .concern-row { display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: baseline; margin-top: var(--s6); padding-bottom: clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--hairline); }
   @media (max-width: 860px) { .concern-row { grid-template-columns: 1fr; gap: var(--s3); } }
 
   /* ---------- booking flow ---------- */
