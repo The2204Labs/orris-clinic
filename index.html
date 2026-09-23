@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Orris is a concept website for a consultation-first skin clinic in Chelsea, designed and built by 2204 Labs.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:title" content="Orris Skin Clinic · a 2204 Labs concept">
+  <meta property="og:description" content="A concept website for a consultation-first skin clinic in Chelsea, designed and built by 2204 Labs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/slide-room.jpg">
+  <meta name="theme-color" content="#551A27">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23551A27'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23F3E8DA'%3EO%3C/text%3E%3C/svg%3E">
+<title>Orris Skin Clinic · a 2204 Labs concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  /* Orris — one committed warm world, sampled from the client moodboard.
+     Single theme by choice: every surface and colour is painted explicitly. */
+  :root {
+    color-scheme: light;
+    --ground:    #EFE3D1;
+    --raised:    #E8D8C4;
+    --stripe:    #E5D4BF;
+    --pill:      #DCC8B1;
+    --hairline:  #C7B7A3;
+    --clay:      #9C6C60;
+    --ink:       #2A1A18;
+    --ink-soft:  #6B5648;
+    --ink-faint: #6B5A4A;   /* small labels: 4.7:1 on raised, 5.2:1 on ground */
+    --ink-quiet: #8E7A67;   /* large display text only (3.2:1) */
+    --accent:    #6D2932;
+    --deep:      #551A27;
+    --deep-ink:  #F3E8DA;
+    --caution:   #8A4B22;
+
+    --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+
+    --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+    --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px; --s10: 128px;
+    --tile: 18px;
+    --shell: 1320px;
+    --gutter: clamp(16px, 2.4vw, 28px);
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--sans); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  p { margin: 0; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; letter-spacing: -0.012em; text-wrap: balance; }
+  h1:focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .shell { max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter); }
+  .label {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 500; color: var(--ink-faint); margin: 0;
+  }
+  .soft { color: var(--ink-soft); }
+  .small { font-size: 15px; line-height: 1.55; }
+
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--ground); padding: 8px 14px; border-radius: 999px; z-index: 100; }
+  .skip:focus { left: 8px; }
+
+  /* ---------- header: one continuous cream stripe ---------- */
+  .bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40;
+    padding-block: var(--s3); background: var(--ground);
+    transition: background-color 400ms var(--ease);
+  }
+  .is-home:not(.scrolled) .bar { background: transparent; }
+  .is-home:not(.scrolled) .stripe { box-shadow: 0 18px 50px -24px rgba(20,8,6,.55); }
+  .stripe {
+    position: relative;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--s4);
+    background: var(--stripe); border-radius: 999px;
+    padding: 6px 6px 6px 26px; min-height: 56px;
+  }
+  .brand {
+    justify-self: start; text-decoration: none; display: flex; align-items: baseline; gap: 10px;
+    font-family: var(--serif); font-size: 26px; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .brand small {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-faint); font-weight: 500;
+  }
+  .nav { display: flex; align-items: center; gap: 2px; }
+  .nav a {
+    display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border-radius: 999px;
+    font-size: 14px; text-decoration: none; color: var(--ink-soft);
+    transition: background-color 400ms var(--ease), color 400ms var(--ease);
+  }
+  .nav a:hover { color: var(--ink); background: var(--pill); }
+  .nav a[aria-current="page"] { color: var(--ink); background: var(--ground); }
+  .nav .sep { width: 4px; height: 4px; border-radius: 50%; background: var(--deep); }
+  .bar-right { justify-self: end; display: flex; align-items: center; gap: 6px; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 8px 0 20px;
+    border-radius: 999px; background: var(--deep); color: var(--deep-ink); text-decoration: none;
+    font-size: 14px; font-weight: 500; white-space: nowrap;
+    transition: background-color 400ms var(--ease);
+  }
+  .cta:hover { background: var(--accent); }
+  .cta .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--deep-ink); color: var(--deep); }
+  .cta .dot svg { width: 13px; height: 13px; }
+  .menu-btn {
+    display: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--ground); color: var(--ink); font: 500 14px var(--sans);
+  }
+  .mobile-nav {
+    position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--stripe); border-radius: 24px; padding: var(--s2);
+    box-shadow: 0 24px 60px -30px rgba(42,26,24,.45);
+    display: grid; gap: 2px;
+  }
+  .mobile-nav a { padding: 14px 18px; border-radius: 16px; text-decoration: none; font-size: 17px; }
+  .mobile-nav a[aria-current="page"] { background: var(--ground); }
+  @media (max-width: 1120px) {
+    .stripe { grid-template-columns: 1fr auto; padding-left: 20px; }
+    .nav { display: none; }
+    .menu-btn { display: inline-flex; align-items: center; }
+  }
+  .cta-short { display: none; }
+  @media (max-width: 480px) {
+    .brand small { display: none; }
+    .cta-full { display: none; }
+    .cta-short { display: inline; }
+    .cta { padding-left: 16px; }
+    .brand { font-size: 22px; }
+    .stripe { padding-left: 18px; gap: var(--s2); }
+  }
+  @media (min-width: 1121px) { .mobile-nav { display: none !important; } }
+
+  /* ---------- views ---------- */
+  .view { animation: enter 700ms var(--ease) both; }
+  @keyframes enter { from { opacity: .001; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .block { padding-block: clamp(56px, 8vw, 112px); }
+  .block + .block { padding-top: 0; }
+
+  .page-head { padding-block: clamp(48px, 7vw, 96px) clamp(32px, 4vw, 56px); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); align-items: end; }
+  .page-head h1 { font-size: clamp(44px, 6.4vw, 96px); line-height: .98; margin-top: var(--s3); max-width: 14ch; }
+  .page-head p.intro { font-size: 17px; color: var(--ink-soft); max-width: none; padding-bottom: 0.4em; }
+  @media (max-width: 860px) { .page-head { grid-template-columns: 1fr; gap: var(--s5); } .page-head p.intro { padding-inline: 0; } }
+
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: var(--s5); margin-bottom: var(--s7); flex-wrap: wrap; }
+  .sec-head h2 { font-size: clamp(32px, 4.2vw, 56px); line-height: 1.04; }
+
+  /* ---------- buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--s3);
+    min-height: 48px; padding: 0 8px 0 22px; border-radius: 999px;
+    font-family: var(--sans); font-size: 15px; font-weight: 500; text-decoration: none;
+    background: var(--deep-ink); color: var(--deep); border: 0; cursor: pointer;
+    transition: background-color 400ms var(--ease), color 400ms var(--ease);
+  }
+  .btn .dot {
+    width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--deep); color: var(--deep-ink); transition: transform 400ms var(--ease);
+  }
+  .btn .dot svg { width: 14px; height: 14px; }
+  .btn:hover .dot { transform: translateX(3px); }
+  .btn.dark { background: var(--deep); color: var(--deep-ink); }
+  .btn.dark .dot { background: var(--deep-ink); color: var(--deep); }
+  .btn.line { background: transparent; color: inherit; box-shadow: inset 0 0 0 1px currentColor; padding: 0 22px; }
+  .btn.line:hover { background: rgba(243,232,218,.12); }
+  .btn.line.on-light:hover { background: var(--raised); }
+
+  /* ---------- hero ---------- */
+  /* full-bleed, full-screen opener that sits under the floating header */
+  .hero-frame {
+    position: relative; overflow: hidden;
+    margin-top: -80px;                       /* header height: 12 + 56 + 12 */
+    min-height: max(620px, 100svh); background: #3a1c18; color: var(--deep-ink); display: grid;
+  }
+  /* hero slideshow: slow crossfade with a gentle settle-in zoom */
+  .slides { position: absolute; inset: 0; }
+  .slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity 1100ms var(--ease); }
+  .slide.is-on { opacity: 1; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transition: transform 4500ms linear; }
+  .slide.is-on img { transform: scale(1); }
+  .hero-controls { align-self: end; justify-self: end; display: grid; gap: var(--s3); justify-items: end; }
+  .hero-controls .cap { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .85; min-height: 1.5em; }
+  .hc-row { display: flex; align-items: center; gap: var(--s2); }
+  .hc-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+    background: rgba(243,232,218,.16); color: var(--deep-ink);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    transition: background-color 400ms var(--ease);
+  }
+  .hc-btn:hover { background: rgba(243,232,218,.3); }
+  .hc-btn svg { width: 15px; height: 15px; }
+  .hc-count { font-size: 13px; font-variant-numeric: tabular-nums; min-width: 5.5ch; text-align: center; opacity: .9; }
+  .hc-dots { display: flex; gap: 2px; margin-inline: var(--s2); }
+  .hc-dot { width: 24px; height: 24px; border: 0; padding: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+  .hc-dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: rgba(243,232,218,.45); transition: background-color 400ms var(--ease), transform 400ms var(--ease); }
+  .hc-dot[aria-current="true"]::before { background: var(--deep-ink); transform: scale(1.3); }
+  @media (max-width: 860px) { .hero-controls { justify-self: start; justify-items: start; } }
+  @media (max-width: 480px) {
+    .hc-count { display: none; } .hc-dots { margin-inline: 0; }
+    /* phones: the facts strip below already covers these, so keep the photo readable */
+    .hero .hero-grid .hero-points { display: none; }
+    .hero .hero-grid { gap: var(--s5); padding-block: calc(80px + 32px) 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .slide img { transform: none !important; } }
+  .hero-frame::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(34,14,12,.74) 0%, rgba(34,14,12,.3) 50%, rgba(34,14,12,.12) 100%),
+      linear-gradient(0deg, rgba(34,14,12,.62) 0%, transparent 44%),
+      linear-gradient(180deg, rgba(34,14,12,.35) 0%, transparent 22%);
+  }
+  .hero-grid {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1.25fr 1fr; grid-template-rows: 1fr auto;
+    gap: var(--s6); width: 100%; max-width: var(--shell); margin-inline: auto;
+    /* inline padding lines hero copy up with the ORRIS mark inside the stripe */
+    padding-block: calc(80px + clamp(40px, 7vw, 96px)) clamp(28px, 4vw, 48px);
+    padding-inline: calc(var(--gutter) + 26px);
+  }
+  @media (max-width: 1120px) { .hero-grid { padding-inline: calc(var(--gutter) + 20px); } }
+  .hero h1 { font-size: clamp(44px, 6.4vw, 92px); line-height: .98; color: var(--deep-ink); align-self: center; max-width: 12ch; }
+  .hero h1 em { font-style: italic; color: #E9C9B8; }
+  .hero-aside { align-self: center; justify-self: end; max-width: 34ch; font-size: 15px; line-height: 1.6; opacity: .88; }
+  .hero-points { display: grid; gap: var(--s4); align-self: end; max-width: 42ch; }
+  .hero-point { display: grid; grid-template-columns: 22px 1fr; gap: var(--s3); align-items: start; }
+  .hero-point svg { width: 18px; height: 18px; margin-top: 3px; opacity: .9; }
+  .hero-point b { display: block; font-weight: 500; font-size: 15px; }
+  .hero-point span { display: block; font-size: 13.5px; line-height: 1.5; opacity: .75; }
+  .hero-inset { align-self: end; justify-self: end; width: min(100%, 300px); display: grid; gap: var(--s2); text-decoration: none; }
+  .hero-inset .thumb { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 999px 999px 12px 12px / 60% 60% 12px 12px; }
+  .hero-inset .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transition: transform 900ms var(--ease); }
+  .hero-inset:hover .thumb img { transform: scale(1.04); }
+  .hero-inset .cap { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; opacity: .85; display: flex; justify-content: space-between; }
+  .hero-cta { display: flex; gap: var(--s3); flex-wrap: wrap; margin-top: var(--s5); }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .hero-aside { justify-self: start; }
+  }
+
+  /* facts strip under the hero */
+  .facts { margin-top: var(--s2); display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--hairline); }
+  .fact { padding: var(--s5) var(--s4) var(--s5) 0; display: grid; gap: 2px; }
+  .fact + .fact { border-left: 1px solid var(--hairline); padding-left: var(--s5); }
+  .fact b { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .fact span { font-size: 14px; color: var(--ink-soft); }
+  @media (max-width: 760px) {
+    .facts { grid-template-columns: 1fr 1fr; }
+    .fact:nth-child(3) { border-left: 0; padding-left: 0; }
+    .fact:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+  }
+
+  /* statement */
+  .statement-row {
+    display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: start;
+    padding-top: var(--s6); border-top: 1px solid var(--hairline);
+  }
+  .statement-row .label { padding-top: 0.9em; }
+  .statement {
+    font-family: var(--serif); font-size: clamp(30px, 3.4vw, 50px); line-height: 1.14;
+    letter-spacing: -0.012em; max-width: 32ch; text-wrap: pretty;
+  }
+  .statement .fade { color: var(--ink-quiet); }
+  @media (max-width: 860px) {
+    .statement-row { grid-template-columns: 1fr; gap: var(--s4); }
+    .statement-row .label { padding-top: 0; }
+  }
+
+  /* explore index: the homepage summary */
+  .explore { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); }
+  .ex {
+    display: grid; grid-template-rows: auto 1fr; text-decoration: none; color: var(--ink);
+    background: var(--raised); border-radius: var(--tile); overflow: hidden;
+    transition: background-color 400ms var(--ease);
+  }
+  .ex:hover { background: var(--pill); }
+  .ex .ex-img { aspect-ratio: 4 / 5; overflow: hidden; background: var(--clay); }
+  .ex .ex-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1100ms var(--ease); }
+  .ex:hover .ex-img img { transform: scale(1.045); }
+  .ex-body { padding: var(--s4) var(--s4) var(--s5); display: grid; gap: var(--s2); align-content: start; }
+  .ex-body .top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); }
+  .ex-body h3 { font-size: 30px; line-height: 1.05; }
+  .ex-body .go { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--ground); flex: none; transition: transform 400ms var(--ease); }
+  .ex:hover .go { transform: translateX(3px); }
+  .ex-body .go svg { width: 13px; height: 13px; }
+  .ex-body p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+  .ex-body .meta { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-faint); margin-top: var(--s2); }
+  @media (max-width: 1000px) { .explore { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .explore { grid-template-columns: 1fr; } .ex .ex-img { aspect-ratio: 16 / 10; } }
+
+  /* consultation band */
+  .band {
+    background: var(--deep); color: var(--deep-ink); border-radius: var(--tile);
+    padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--s6); align-items: end;
+  }
+  .band h2 { font-size: clamp(32px, 4vw, 56px); line-height: 1.04; color: var(--deep-ink); }
+  .band p { opacity: .8; font-size: 15.5px; max-width: 46ch; margin-top: var(--s3); }
+  .band .right { justify-self: end; display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; }
+  .band .right dl { flex-basis: 100%; }
+  .band .kv { border-color: rgba(243,232,218,.2); }
+  .band .kv dt { color: rgba(243,232,218,.62); }
+  @media (max-width: 860px) { .band { grid-template-columns: 1fr; } .band .right { justify-self: start; } }
+
+  /* treatment carousel */
+  .rail-head { display: flex; justify-content: space-between; align-items: end; gap: var(--s4); }
+  .arrows { display: flex; gap: var(--s2); }
+  .arrow {
+    width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--hairline);
+    background: transparent; color: var(--ink); display: grid; place-items: center; cursor: pointer;
+    transition: background-color 400ms var(--ease), border-color 400ms var(--ease);
+  }
+  .arrow:hover { background: var(--raised); border-color: var(--ink-quiet); }
+  .arrow:disabled { opacity: .38; cursor: default; }
+  .arrow svg { width: 16px; height: 16px; }
+  .rail {
+    display: grid; grid-auto-flow: column; grid-auto-columns: clamp(250px, 30%, 380px);
+    gap: var(--s3); overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-top: var(--s5); padding-bottom: var(--s3); scrollbar-width: none; overscroll-behavior-x: contain;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .card {
+    position: relative; aspect-ratio: 3 / 4; border-radius: var(--tile); overflow: hidden;
+    scroll-snap-align: start; text-decoration: none; color: var(--deep-ink); background: var(--clay);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1100ms var(--ease); }
+  .card:hover img { transform: scale(1.045); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34,14,12,.45), transparent 32%, transparent 58%, rgba(34,14,12,.62)); }
+  .card-top, .card-foot { position: relative; z-index: 2; padding: var(--s4); display: flex; justify-content: space-between; align-items: start; gap: var(--s3); }
+  .card-top h3 { font-family: var(--sans); font-size: 16px; font-weight: 500; letter-spacing: 0; }
+  .num {
+    flex: none; min-width: 34px; height: 26px; padding: 0 8px; border-radius: 999px; display: grid; place-items: center;
+    background: var(--deep-ink); color: var(--ink); font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 500;
+  }
+  .card-foot p { font-size: 14px; line-height: 1.45; max-width: 30ch; opacity: .9; }
+  .card-foot .price { font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; opacity: .9; }
+
+  /* price guide table */
+  .guide { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .guide th { text-align: left; font-weight: 500; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); padding: 0 var(--s4) var(--s3) 0; border-bottom: 1px solid var(--hairline); }
+  .guide td { padding: 18px var(--s4) 18px 0; border-bottom: 1px solid var(--hairline); vertical-align: baseline; color: var(--ink-soft); }
+  .guide td:first-child a { font-family: var(--serif); font-size: 26px; color: var(--ink); text-decoration: none; line-height: 1.15; }
+  .guide td:first-child a:hover { color: var(--accent); }
+  .guide td.num-col { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink); padding-right: 0; }
+  .guide th.num-col { text-align: right; padding-right: 0; }
+  .table-wrap { overflow-x: auto; }
+  @media (max-width: 640px) { .guide .hide-sm { display: none; } }
+
+  /* ---------- why orris ring ---------- */
+  .why { background: var(--raised); border-radius: var(--tile); padding: clamp(28px, 5vw, 64px); }
+  /* Original orbit layout. Sizes are in cqw (ring width) so the labels can be
+     placed on a radius that always clears the dashed line:
+     core r=20, dashed line r=25, label anchor r=29, and each label is pushed
+     outward by its own size so its inner edge sits on that anchor. */
+  .ring { position: relative; container-type: inline-size; aspect-ratio: 100 / 80; max-width: 1080px; margin-inline: auto; }
+  .ring-core { position: absolute; left: 50%; top: 50%; width: 40cqw; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; overflow: hidden; background: var(--clay); }
+  .ring-core img { width: 100%; height: 100%; object-fit: cover; }
+  .ring-core::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle, rgba(34,14,12,.18), rgba(34,14,12,.5)); }
+  .ring-core span { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; font-family: var(--serif); font-size: clamp(26px, 3vw, 40px); color: var(--deep-ink); }
+  .ring-line { position: absolute; left: 50%; top: 50%; width: 50cqw; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 1px dashed var(--hairline); }
+  .ring-pt {
+    position: absolute; width: 17ch;
+    left: calc(50% + 29cqw * cos(var(--a))); top: calc(50% + 29cqw * sin(var(--a)));
+    translate: calc(-50% + 50% * cos(var(--a))) calc(-50% + 50% * sin(var(--a)));
+    text-align: center; font-size: 13.5px; line-height: 1.4; color: var(--ink-soft);
+  }
+  .ring-pt b { display: block; font-weight: 500; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
+  .ring-pt::before { content: ""; display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin: 0 auto var(--s2); }
+  @media (max-width: 900px) {
+    .ring { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5) var(--s4); }
+    .ring-line { display: none; }
+    .ring-core { position: relative; left: auto; top: auto; translate: none; width: min(70%, 320px); grid-column: 1 / -1; justify-self: center; margin-bottom: var(--s4); }
+    .ring-pt { position: static; translate: none; width: auto; text-align: left; border-top: 1px solid var(--hairline); padding-top: var(--s3); }
+    .ring-pt::before { display: none; }
+  }
+  @media (max-width: 480px) { .ring { grid-template-columns: 1fr; } }
+
+  /* about story */
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+  .story-img { border-radius: var(--tile); overflow: hidden; background: var(--clay); min-height: 420px; }
+  .story-img img { width: 100%; height: 100%; object-fit: cover; }
+  .story-text { background: var(--raised); border-radius: var(--tile); padding: clamp(24px, 4vw, 48px); display: grid; gap: var(--s5); align-content: space-between; }
+  .story-text p { font-size: 16.5px; max-width: 52ch; }
+  .story-text p + p { color: var(--ink-soft); }
+  @media (max-width: 860px) { .story { grid-template-columns: 1fr; } .story-img { min-height: 300px; } }
+
+  /* ---------- info panels ---------- */
+  .panel { background: var(--raised); border-radius: var(--tile); padding: var(--s5); }
+  dl { margin: 0; }
+  .kv { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--s3); padding-block: 10px; border-top: 1px solid var(--hairline); font-size: 15px; }
+  .kv:first-of-type { border-top: 0; }
+  .kv dt { color: var(--ink-faint); }
+  .kv dd { margin: 0; }
+  .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); }
+  .panel.person { background: var(--deep); color: var(--deep-ink); }
+  .person h3 { font-size: 30px; line-height: 1.1; margin-bottom: var(--s4); color: var(--deep-ink); }
+  .person .label { color: rgba(243,232,218,.66); }
+  .person .kv { border-color: rgba(243,232,218,.2); }
+  .person .kv dt { color: rgba(243,232,218,.66); }
+  .person .role { margin-bottom: var(--s2); }
+  .person p.bio { font-size: 15px; color: var(--deep-ink); opacity: .82; margin-top: var(--s4); }
+  @media (max-width: 900px) { .people { grid-template-columns: 1fr; } }
+
+  /* ---------- journey ---------- */
+  .journey-frame {
+    position: relative; border-radius: calc(var(--tile) + 4px); overflow: hidden;
+    min-height: clamp(480px, 64vh, 660px); color: var(--deep-ink); background: #3a1c18;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .journey-frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .journey-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34,14,12,.55), rgba(34,14,12,.1) 38%, rgba(34,14,12,.8)); }
+  .journey-top, .steps { position: relative; z-index: 2; padding: clamp(20px, 3vw, 36px); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 12px; padding: 5px 12px; border-radius: 999px; background: rgba(243,232,218,.16); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s5); }
+  .step { border-top: 1px solid rgba(243,232,218,.45); padding-top: var(--s3); display: grid; gap: var(--s2); }
+  .step .n { font-size: 12px; letter-spacing: .1em; font-variant-numeric: tabular-nums; opacity: .7; }
+  .step h3 { font-family: var(--sans); font-size: 16px; font-weight: 500; letter-spacing: 0; color: var(--deep-ink); }
+  .step p { font-size: 14px; line-height: 1.5; opacity: .8; }
+  @media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
+
+  .stage { display: grid; grid-template-columns: 120px 1fr 1.1fr; gap: var(--s5); padding-block: var(--s6); border-top: 1px solid var(--hairline); align-items: start; }
+  .stage:last-child { border-bottom: 1px solid var(--hairline); }
+  .stage .n { font-family: var(--serif); font-size: 44px; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stage h3 { font-size: 34px; line-height: 1.1; }
+  .stage h3 + p { color: var(--ink-soft); font-size: 15.5px; margin-top: var(--s3); max-width: 42ch; }
+  @media (max-width: 860px) { .stage { grid-template-columns: 1fr; gap: var(--s3); } }
+
+  /* ---------- faq ---------- */
+  .faq-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(24px, 4vw, 64px); align-items: start; }
+  .faq-img { border-radius: var(--tile); overflow: hidden; aspect-ratio: 3 / 4; background: var(--clay); position: sticky; top: 96px; }
+  .faq-img img { width: 100%; height: 100%; object-fit: cover; }
+  .faq-group + .faq-group { margin-top: var(--s7); }
+  .faq-group .label { margin-bottom: var(--s3); }
+  details { border-top: 1px solid var(--hairline); }
+  details:last-of-type { border-bottom: 1px solid var(--hairline); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: var(--s4); padding-block: 18px; font-size: 17px; }
+  summary::-webkit-details-marker { display: none; }
+  summary .plus { flex: none; width: 22px; height: 22px; position: relative; margin-top: 2px; }
+  summary .plus::before, summary .plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 1.5px; background: currentColor; translate: -50% -50%; transition: rotate 400ms var(--ease); }
+  summary .plus::after { rotate: 90deg; }
+  details[open] summary .plus::after { rotate: 0deg; }
+  details .ans { padding-bottom: var(--s5); color: var(--ink-soft); font-size: 15.5px; max-width: 60ch; }
+  @media (max-width: 860px) { .faq-grid { grid-template-columns: 1fr; } .faq-img { position: relative; top: 0; aspect-ratio: 4 / 3; } }
+  @media (max-width: 480px) { .faq-img { aspect-ratio: 16 / 11; } .faq-img img { object-position: 50% 35%; } .detail-title { margin-block: var(--s5); } }
+
+  /* ---------- book ---------- */
+  .visit { display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--s3); }
+  .visit-img { border-radius: var(--tile); overflow: hidden; min-height: 420px; background: var(--clay); }
+  .visit-img img { width: 100%; height: 100%; object-fit: cover; }
+  .book { background: var(--deep); color: var(--deep-ink); border-radius: var(--tile); padding: clamp(28px, 4vw, 48px); display: grid; gap: var(--s6); }
+  .book h2 { font-size: clamp(30px, 3.2vw, 44px); line-height: 1.04; color: var(--deep-ink); }
+  .book .label { color: rgba(243,232,218,.62); }
+  .book .kv { border-color: rgba(243,232,218,.2); }
+  .book .kv dt { color: rgba(243,232,218,.62); }
+  @media (max-width: 860px) { .visit { grid-template-columns: 1fr; } .visit-img { min-height: 280px; } }
+  form.bk { display: grid; gap: var(--s3); }
+  .field { display: grid; gap: 6px; }
+  .field label { font-size: 13px; color: rgba(243,232,218,.75); }
+  .field input, .field select {
+    min-height: 46px; border-radius: 12px; border: 1px solid rgba(243,232,218,.28);
+    background: rgba(243,232,218,.06); color: var(--deep-ink); padding: 0 14px; font: inherit; font-size: 16px;
+  }
+  .field select option { color: var(--ink); }
+  .field input:focus, .field select:focus { outline: 2px solid #E9C9B8; outline-offset: 1px; }
+  .field .err { font-size: 13px; color: #F2B8A6; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+  .done { border-top: 1px solid rgba(243,232,218,.25); padding-top: var(--s4); font-size: 15px; }
+  .hours { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin-top: var(--s3); }
+  .hours .panel h3 { font-size: 26px; margin-bottom: var(--s3); }
+  @media (max-width: 860px) { .hours { grid-template-columns: 1fr; } }
+
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ---------- concerns ---------- */
+  .concerns { border-top: 1px solid var(--hairline); }
+  .concern {
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: var(--s6); align-items: start;
+    padding-block: var(--s6); border-bottom: 1px solid var(--hairline); scroll-margin-top: 100px;
+  }
+  .concern h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.08; }
+  .concern .desc { font-size: 16px; }
+  .concern .note { font-size: 14px; color: var(--ink-soft); margin-top: var(--s3); }
+  .concern .helps .label { margin-bottom: var(--s3); }
+  .tchips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tchip {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border-radius: 999px;
+    background: var(--raised); color: var(--ink); text-decoration: none; font-size: 14px;
+    transition: background-color 400ms var(--ease);
+  }
+  .tchip:hover { background: var(--pill); }
+  .tchip svg { width: 12px; height: 12px; }
+  .concern.flash { animation: flash 1600ms var(--ease); }
+  @keyframes flash { 0%, 40% { background: var(--raised); } 100% { background: transparent; } }
+  @media (max-width: 900px) { .concern { grid-template-columns: 1fr; gap: var(--s3); } }
+  .concern-row { display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: baseline; margin-top: var(--s6); }
+  @media (max-width: 860px) { .concern-row { grid-template-columns: 1fr; gap: var(--s3); } }
+
+  /* ---------- booking flow ---------- */
+  .bk-steps { list-style: none; margin: var(--s4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; counter-reset: st; }
+  .bk-steps li {
+    counter-increment: st; font-size: 13px; padding-top: 10px; border-top: 2px solid rgba(243,232,218,.22);
+    color: rgba(243,232,218,.62); transition: border-color 400ms var(--ease), color 400ms var(--ease);
+  }
+  .bk-steps li::before { content: "0" counter(st) "  "; font-variant-numeric: tabular-nums; white-space: pre; }
+  .bk-steps li.done, .bk-steps li[aria-current="step"] { border-color: var(--deep-ink); color: var(--deep-ink); }
+  .bk-step { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: var(--s4); }
+  .opts { display: grid; gap: 6px; }
+  .opt {
+    display: grid; grid-template-columns: 22px 1fr auto; gap: var(--s3); align-items: center; cursor: pointer;
+    padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(243,232,218,.22);
+    transition: background-color 300ms var(--ease), border-color 300ms var(--ease);
+  }
+  .opt:hover { border-color: rgba(243,232,218,.5); }
+  .opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .opt .tick { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(243,232,218,.6); display: grid; place-items: center; }
+  .opt .tick::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--deep); transform: scale(0); transition: transform 300ms var(--ease); }
+  .opt b { font-weight: 500; font-size: 15.5px; display: block; }
+  .opt small { display: block; font-size: 13px; opacity: .72; margin-top: 2px; }
+  .opt .p { font-size: 14px; font-variant-numeric: tabular-nums; opacity: .85; white-space: nowrap; }
+  .opt:has(input:checked) { background: var(--deep-ink); color: var(--deep); border-color: var(--deep-ink); }
+  .opt:has(input:checked) .tick { border-color: var(--deep); }
+  .opt:has(input:checked) .tick::after { transform: scale(1); }
+  .opt:has(input:focus-visible), .slot:has(input:focus-visible), .day:has(input:focus-visible) { outline: 2px solid #E9C9B8; outline-offset: 2px; }
+  .bk-sub { font-size: 13px; color: rgba(243,232,218,.72); display: flex; justify-content: space-between; gap: var(--s3); align-items: baseline; }
+  .days { display: grid; grid-auto-flow: column; grid-auto-columns: 64px; gap: 6px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+  .day, .slot { position: relative; cursor: pointer; border-radius: 12px; border: 1px solid rgba(243,232,218,.22); text-align: center; transition: background-color 300ms var(--ease), border-color 300ms var(--ease); }
+  .day { padding: 10px 0; display: grid; gap: 2px; }
+  .day input, .slot input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .day .dw { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; opacity: .72; }
+  .day .dn { font-family: var(--serif); font-size: 26px; line-height: 1.05; }
+  .day .dm { font-size: 11px; opacity: .72; }
+  .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 6px; }
+  .slot { min-height: 44px; display: grid; place-items: center; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .day:hover, .slot:hover { border-color: rgba(243,232,218,.5); }
+  .day:has(input:checked), .slot:has(input:checked) { background: var(--deep-ink); color: var(--deep); border-color: var(--deep-ink); }
+  .slot:has(input:disabled) { cursor: not-allowed; opacity: .38; text-decoration: line-through; }
+  .bk-nav { display: flex; gap: var(--s3); align-items: center; flex-wrap: wrap; margin-top: var(--s2); }
+  .btn.ghost-dark { background: transparent; color: var(--deep-ink); box-shadow: inset 0 0 0 1px rgba(243,232,218,.45); padding: 0 22px; }
+  .btn.ghost-dark:hover { background: rgba(243,232,218,.1); }
+  .bk-err { font-size: 14px; color: #F2B8A6; }
+  .field textarea {
+    min-height: 92px; border-radius: 12px; border: 1px solid rgba(243,232,218,.28);
+    background: rgba(243,232,218,.06); color: var(--deep-ink); padding: 12px 14px; font: inherit; font-size: 16px; resize: vertical;
+  }
+  .field textarea:focus { outline: 2px solid #E9C9B8; outline-offset: 1px; }
+  .field .hint { font-size: 12.5px; color: rgba(243,232,218,.62); }
+  .bk-summary { border-top: 1px solid rgba(243,232,218,.2); padding-top: var(--s3); }
+  .bk-done { display: grid; gap: var(--s4); }
+  .bk-done .tickbig { width: 56px; height: 56px; border-radius: 50%; background: var(--deep-ink); color: var(--deep); display: grid; place-items: center; }
+  .bk-done .tickbig svg { width: 24px; height: 24px; }
+  .bk-done h3 { font-size: 34px; color: var(--deep-ink); line-height: 1.1; }
+  .visit { align-items: start; }
+  .visit-img { position: sticky; top: 96px; height: min(680px, calc(100svh - 120px)); }
+  @media (max-width: 860px) { .visit-img { position: relative; top: 0; height: 280px; } }
+
+  /* ---------- treatment detail ---------- */
+  .detail { padding-block: var(--s5) var(--s9); }
+  .detail-grid { display: grid; grid-template-columns: minmax(280px, 1fr) 2fr; gap: var(--s3); align-items: start; }
+  .detail-side { display: grid; gap: var(--s3); position: sticky; top: 96px; }
+  .detail-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pill {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s3);
+    min-height: 40px; padding: 0 var(--s4); border-radius: 999px; background: var(--raised);
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; text-decoration: none; color: var(--ink);
+    transition: background-color 400ms var(--ease);
+  }
+  a.pill:hover { background: var(--pill); }
+  .pill svg { width: 14px; height: 14px; flex: none; }
+  @media (max-width: 520px) { .detail-pills { grid-template-columns: 1fr; } .pill { padding-block: 10px; line-height: 1.3; } }
+  .panel h4 { margin: var(--s5) 0 var(--s2); }
+  .panel h4:first-child { margin-top: 0; }
+  .panel .desc { font-size: 15px; line-height: 1.6; border-top: 1px solid var(--hairline); padding-top: 10px; }
+  .panel .caution { font-size: 14px; color: var(--caution); border-left: 2px solid var(--caution); padding-left: var(--s3); margin-top: var(--s3); }
+  .detail-title { font-size: clamp(44px, 6vw, 88px); line-height: .98; margin: var(--s7) 0; }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+  .tiles figure { margin: 0; border-radius: var(--tile); overflow: hidden; background: var(--raised); aspect-ratio: 1; }
+  .tiles figure.wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  .tiles img { width: 100%; height: 100%; object-fit: cover; }
+  .detail-next { display: flex; justify-content: space-between; gap: var(--s4); margin-top: var(--s7); border-top: 1px solid var(--hairline); padding-top: var(--s5); flex-wrap: wrap; align-items: center; }
+  .detail-next a { text-decoration: none; font-family: var(--serif); font-size: 32px; }
+  .detail-next a:hover { color: var(--accent); }
+  @media (max-width: 860px) { .detail-grid { grid-template-columns: 1fr; } .detail-side { position: static; } }
+
+  /* ---------- footer ---------- */
+  footer { padding-block: var(--s8) var(--s7); }
+  .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--s6); border-top: 1px solid var(--hairline); padding-top: var(--s6); }
+  .foot .label { margin-bottom: var(--s3); }
+  .foot a, .foot p { font-size: 15px; color: var(--ink-soft); text-decoration: none; display: block; line-height: 1.8; }
+  .foot a:hover { color: var(--ink); }
+  .foot a.brand { margin-bottom: var(--s4); display: inline-flex; color: var(--deep); font-size: 24px; line-height: 1; }
+  .foot .brand small { color: var(--deep); }
+  .colophon { font-size: 13px; color: var(--ink-faint); margin-top: var(--s7); padding-top: var(--s5); border-top: 1px solid var(--hairline); max-width: none; }
+  @media (max-width: 760px) { .foot { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .foot { grid-template-columns: 1fr; gap: var(--s5); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="shell">
+    <div class="stripe">
+      <a class="brand" href="#home">Orris <small>Clinic</small></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#home" data-nav="home">Home</a><span class="sep" aria-hidden="true"></span>
+        <a href="#about" data-nav="about">About</a><span class="sep" aria-hidden="true"></span>
+        <a href="#treatments" data-nav="treatments">Treatments</a><span class="sep" aria-hidden="true"></span>
+        <a href="#concerns" data-nav="concerns">Concerns</a><span class="sep" aria-hidden="true"></span>
+        <a href="#journey" data-nav="journey">Journey</a><span class="sep" aria-hidden="true"></span>
+        <a href="#faq" data-nav="faq">FAQ</a>
+      </nav>
+      <div class="bar-right">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+        <a class="cta" href="#book"><span class="cta-full">Book a consultation</span><span class="cta-short">Book</span>
+          <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Main" hidden>
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#treatments" data-nav="treatments">Treatments</a>
+        <a href="#concerns" data-nav="concerns">Concerns</a>
+        <a href="#journey" data-nav="journey">Journey</a>
+        <a href="#faq" data-nav="faq">FAQ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HOME ================= -->
+<div class="view" data-view="home">
+    <div class="hero-frame hero">
+      <div class="slides" id="slides" aria-roledescription="carousel" aria-label="Photographs of the clinic">
+        <figure class="slide is-on" aria-roledescription="slide" aria-label="1 of 4" data-cap="Treatment room one"><img src="img/slide-room.jpg" width="1800" height="1012" alt="A treatment room with a cream treatment chair and two laser devices in front of a backlit arched mural of blossom and birds."></figure>
+        <figure class="slide" aria-roledescription="slide" aria-hidden="true" aria-label="2 of 4" data-cap="Reception &middot; Elystan Street"><img loading="lazy" src="img/reception.jpg" width="1800" height="1350" alt="The Orris reception: a curved wine-red plaster wall with backlit shelves, boucle armchairs and a vase of yellow wildflowers." style="object-position:50% 45%"></figure>
+        <figure class="slide" aria-roledescription="slide" aria-hidden="true" aria-label="3 of 4" data-cap="Treatment room two"><img loading="lazy" src="img/why.jpg" width="1800" height="1800" alt="A treatment room with a cream leather bed, a red marble basin and a lit arched doorway." style="object-position:50% 62%"></figure>
+        <figure class="slide" aria-roledescription="slide" aria-hidden="true" aria-label="4 of 4" data-cap="The corridor"><img loading="lazy" src="img/slide-hall.jpg" width="1800" height="1012" alt="A curved cream plaster corridor with a warm lit edge, arched oxblood doors and a travertine floor."></figure>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1 tabindex="-1">Considered skin care. <em>Results that still look like you.</em></h1>
+          <div class="hero-cta">
+            <a class="btn" href="#book">Book a consultation <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+            <a class="btn line" href="#treatments">See treatments</a>
+          </div>
+        </div>
+        <p class="hero-aside">A consultation-first clinic on Elystan Street, between Chelsea and South Kensington. From clinical facials to prescriber-led injectables, the first step is always a proper look at your skin, in good light, with time to talk.</p>
+        <div class="hero-points">
+          <div class="hero-point">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 5.5v4.5l3 2"/></svg>
+            <div><b>Forty-five minute consultations</b><span>Medical history, skin analysis and a written plan before anything is booked.</span></div>
+          </div>
+          <div class="hero-point">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 2.5c3 3.2 5 5.9 5 8.6a5 5 0 01-10 0c0-2.7 2-5.4 5-8.6z"/></svg>
+            <div><b>The least that makes a difference</b><span>No packages, no upselling. We'll tell you when a treatment won't help.</span></div>
+          </div>
+          <div class="hero-point">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 10.5l4 4 10-10"/></svg>
+            <div><b>A two-week review, always</b><span>We check how your skin has settled, at no charge, after every treatment.</span></div>
+          </div>
+        </div>
+        <div class="hero-controls">
+          <span class="cap" id="slideCap">Treatment room one</span>
+          <div class="hc-row">
+            <button class="hc-btn" id="slidePrev" type="button" aria-label="Previous photograph"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg></button>
+            <span class="hc-count" id="slideCount" aria-hidden="true">01 / 04</span>
+            <div class="hc-dots" id="slideDots"></div>
+            <button class="hc-btn" id="slideNext" type="button" aria-label="Next photograph"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+            <button class="hc-btn" id="slidePause" type="button" aria-label="Pause slideshow"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="2.6" height="10" rx="1"/><rect x="9.4" y="3" width="2.6" height="10" rx="1"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="shell">
+    <div class="facts" aria-label="Orris at a glance">
+      <div class="fact"><b>45 min</b><span>Every first visit is a consultation</span></div>
+      <div class="fact"><b>3</b><span>Clinicians, two of them prescribers</span></div>
+      <div class="fact"><b>5</b><span>Treatments, chosen for evidence</span></div>
+      <div class="fact"><b>2 weeks</b><span>Free review after every treatment</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="statement-row">
+        <p class="label">Our approach</p>
+        <p class="statement">Whether it's texture, tone, laxity or a single line that bothers you, <span class="fade">we start by looking properly, then recommend the least we can do to make a real difference.</span></p>
+      </div>
+      <div class="concern-row">
+        <p class="label">Start with a concern</p>
+        <div class="tchips" id="homeConcerns"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="sec-head">
+        <div><p class="label">Explore Orris</p><h2>Everything, in four places</h2></div>
+        <p class="small soft" style="max-width:40ch;">Start wherever makes sense for you. Every page ends in the same place: a consultation, with no obligation to book anything after it.</p>
+      </div>
+      <div class="explore">
+        <a class="ex" href="#about">
+          <div class="ex-img"><img src="img/room-arch.jpg" alt="" loading="lazy" width="1160" height="1440"></div>
+          <div class="ex-body">
+            <div class="top"><h3>About</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+            <p>The clinic, the eight commitments behind every appointment, and the three clinicians you'll see.</p>
+            <span class="meta">3 clinicians &middot; 8 commitments</span>
+          </div>
+        </a>
+        <a class="ex" href="#treatments">
+          <div class="ex-img"><img src="img/t-skin.jpg" alt="" loading="lazy" width="1120" height="1720"></div>
+          <div class="ex-body">
+            <div class="top"><h3>Treatments</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+            <p>Facials, microneedling, peels, skin boosters and prescriber-led injectables, with an honest price guide.</p>
+            <span class="meta">5 treatments &middot; from &pound;110</span>
+          </div>
+        </a>
+        <a class="ex" href="#journey">
+          <div class="ex-img"><img src="img/journey.jpg" alt="" loading="lazy" width="1800" height="1012"></div>
+          <div class="ex-body">
+            <div class="top"><h3>Journey</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+            <p>What happens from your first consultation to your two-week review, and how long each step takes.</p>
+            <span class="meta">4 steps &middot; consultation to review</span>
+          </div>
+        </a>
+        <a class="ex" href="#faq">
+          <div class="ex-img"><img src="img/faq.jpg" alt="" loading="lazy" width="1230" height="1700"></div>
+          <div class="ex-body">
+            <div class="top"><h3>FAQ</h3><span class="go"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></div>
+            <p>Downtime, skin tone, results, deposits, and why some prices can't be published.</p>
+            <span class="meta">10 answers &middot; 3 topics</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="band">
+        <div>
+          <p class="label" style="color:rgba(243,232,218,.62)">Start here</p>
+          <h2 style="margin-top:var(--s3)">Every treatment begins with a consultation</h2>
+          <p>45 minutes, &pound;50, taken off any treatment you go on to book. If we don't think we can help, we'll say so and refund it.</p>
+        </div>
+        <div class="right">
+          <dl style="min-width:min(100%,320px)">
+            <div class="kv"><dt>Where</dt><dd>38 Elystan Street, SW3</dd></div>
+            <div class="kv"><dt>When</dt><dd>Tue&ndash;Fri 9&ndash;7 &middot; Sat 9&ndash;4</dd></div>
+          </dl>
+          <a class="btn" href="#book">Book a consultation <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div class="view" data-view="about" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">About Orris</p><h1 tabindex="-1">A clinic that starts by listening</h1></div>
+      <p class="intro">Orris opened in 2024 on Elystan Street, a quiet stretch between Chelsea and South Kensington. Three treatment rooms, three clinicians, and a rule that nobody is treated at their first visit for injectables.</p>
+    </div>
+    <div class="story">
+      <div class="story-img"><img src="img/why.jpg" alt="A treatment room at Orris: cream leather bed, red marble basin and a lit arched doorway." loading="lazy" width="1800" height="1800"></div>
+      <div class="story-text">
+        <p class="label">The clinic</p>
+        <div style="display:grid; gap:var(--s4)">
+          <p>Orris is named after the iris root, one of the oldest ingredients in skincare: slow to mature and worth the wait. We work the same way. Most of what we do builds gradually, over weeks, and we'd rather you left with a plan than with a treatment you weren't sure about.</p>
+          <p>The rooms are private, the lighting is warm rather than clinical, and appointments are long enough that nobody is watching the clock. Our medical director assesses every injectable case in person.</p>
+        </div>
+        <dl>
+          <div class="kv"><dt>Opened</dt><dd>2024</dd></div>
+          <div class="kv"><dt>Rooms</dt><dd>Three private treatment rooms</dd></div>
+          <div class="kv"><dt>Regulated by</dt><dd>Registered with the Care Quality Commission (demo)</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="why">
+        <div class="sec-head">
+          <div><p class="label">Approach</p><h2>What sets Orris apart</h2></div>
+          <p class="small soft" style="max-width:42ch;">Eight commitments that apply to every appointment, from a first facial to a course of injectables.</p>
+        </div>
+        <div class="ring">
+          <span class="ring-line" aria-hidden="true"></span>
+          <div class="ring-core"><img src="img/detail-object.jpg" width="1800" height="1800" alt="" loading="lazy"><span>Why Orris</span></div>
+          <p class="ring-pt" style="--a:-90deg"><b>Consultation first</b>Every new client starts with an assessment, never a treatment.</p>
+          <p class="ring-pt" style="--a:-45deg"><b>One clinician</b>The person who assesses you treats you and reviews you.</p>
+          <p class="ring-pt" style="--a:0deg"><b>Prescriber-led</b>Injectables only after a face-to-face prescriber assessment.</p>
+          <p class="ring-pt" style="--a:45deg"><b>Written plans</b>What we recommend, what it costs and what it won't do.</p>
+          <p class="ring-pt" style="--a:90deg"><b>Time to decide</b>No same-day injectables after a first consultation.</p>
+          <p class="ring-pt" style="--a:135deg"><b>Skin of every tone</b>Protocols adapted for melanin-rich skin, not borrowed.</p>
+          <p class="ring-pt" style="--a:180deg"><b>Conservative dosing</b>We review before we add. Nobody leaves looking done.</p>
+          <p class="ring-pt" style="--a:225deg"><b>Private rooms</b>Three treatment rooms, no curtains, no shared spaces.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="sec-head"><div><p class="label">Clinicians</p><h2>Who you'll see</h2></div></div>
+      <div class="people">
+        <div class="panel person">
+          <p class="label role">Founder &middot; Medical director</p>
+          <h3>Dr Amara Okonjo</h3>
+          <dl>
+            <div class="kv"><dt>Background</dt><dd>Dermatology, 12 years</dd></div>
+            <div class="kv"><dt>Prescriber</dt><dd>Yes</dd></div>
+            <div class="kv"><dt>Focus</dt><dd>Pigmentation, skin of colour</dd></div>
+            <div class="kv"><dt>Sees</dt><dd>All injectable consultations</dd></div>
+          </dl>
+          <p class="bio">Trained in NHS dermatology before opening Orris. She founded the clinic after years of treating the results of overdone aesthetics work.</p>
+        </div>
+        <div class="panel person">
+          <p class="label role">Aesthetic nurse prescriber</p>
+          <h3>Ruth Vainio</h3>
+          <dl>
+            <div class="kv"><dt>Background</dt><dd>Burns &amp; reconstructive</dd></div>
+            <div class="kv"><dt>Prescriber</dt><dd>Yes</dd></div>
+            <div class="kv"><dt>Focus</dt><dd>Microneedling, Profhilo</dd></div>
+            <div class="kv"><dt>Sees</dt><dd>Collagen &amp; skin-quality clinics</dd></div>
+          </dl>
+          <p class="bio">Came to aesthetics from reconstructive nursing, which is why she is particular about wound healing and aftercare.</p>
+        </div>
+        <div class="panel person">
+          <p class="label role">Senior skin therapist</p>
+          <h3>Inès Marchetti</h3>
+          <dl>
+            <div class="kv"><dt>Background</dt><dd>Clinical facials, 9 years</dd></div>
+            <div class="kv"><dt>Prescriber</dt><dd>No</dd></div>
+            <div class="kv"><dt>Focus</dt><dd>Peels, acne, barrier repair</dd></div>
+            <div class="kv"><dt>Sees</dt><dd>Facials, peels, home routines</dd></div>
+          </dl>
+          <p class="bio">Leads facials and peels, and builds the home routines that make in-clinic treatment last longer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TREATMENTS ================= -->
+<div class="view" data-view="treatments" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">Treatments</p><h1 tabindex="-1">Five treatments, chosen carefully</h1></div>
+      <p class="intro">We offer fewer treatments than most clinics, on purpose. Each one has good evidence behind it, and each starts with a consultation so we can tell you whether it's the right one.</p>
+    </div>
+    <div class="rail-head">
+      <p class="label">Browse treatments</p>
+      <div class="arrows">
+        <button class="arrow" id="railPrev" type="button" aria-label="Previous treatments"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg></button>
+        <button class="arrow" id="railNext" type="button" aria-label="Next treatments"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      </div>
+    </div>
+    <div class="rail" id="rail" role="list" aria-label="Treatments"></div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="sec-head">
+        <div><p class="label">Price guide</p><h2>What to expect to pay</h2></div>
+        <p class="small soft" style="max-width:44ch;">Prices are a guide. What you need is decided at consultation, and the consultation fee is taken off your first treatment.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="guide">
+          <thead><tr><th scope="col">Treatment</th><th scope="col" class="hide-sm">Duration</th><th scope="col" class="hide-sm">Downtime</th><th scope="col" class="num-col">From</th></tr></thead>
+          <tbody id="guideBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= TREATMENT DETAIL ================= -->
+<div class="view" data-view="detail" hidden>
+  <div class="shell detail">
+    <div class="detail-grid">
+      <aside class="detail-side">
+        <div class="detail-pills">
+          <span class="pill" id="dName"></span>
+          <a class="pill" href="#treatments"><span>All treatments</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg></a>
+        </div>
+        <div class="panel">
+          <h4 class="label">Information</h4>
+          <dl id="dInfo"></dl>
+          <h4 class="label">Description</h4>
+          <p class="desc" id="dDesc"></p>
+          <h4 class="label">Good for</h4>
+          <p class="desc" id="dFor"></p>
+          <h4 class="label">Aftercare</h4>
+          <p class="desc" id="dAfter"></p>
+          <p class="caution" id="dCaution"></p>
+        </div>
+        <a class="btn dark" href="#book" id="dBook" style="justify-self:start">Book a consultation <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+      </aside>
+      <div>
+        <h1 class="detail-title" id="dTitle" tabindex="-1"></h1>
+        <div class="tiles" id="dTiles"></div>
+        <div class="detail-next">
+          <span class="label">Next treatment</span>
+          <a id="dNext" href="#"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CONCERNS ================= -->
+<div class="view" data-view="concerns" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">Concerns</p><h1 tabindex="-1">Start with what's bothering you</h1></div>
+      <p class="intro">Most people don't come in asking for a treatment by name. Find the concern closest to yours to see which treatments can help. Your consultation decides the rest.</p>
+    </div>
+    <div class="concerns" id="concernList"></div>
+  </div>
+  <div class="block">
+    <div class="shell">
+      <div class="band">
+        <div>
+          <p class="label" style="color:rgba(243,232,218,.62)">Not sure which fits?</p>
+          <h2 style="margin-top:var(--s3)">Most skin has more than one concern</h2>
+          <p>Bring them all to a 45-minute consultation. We'll look properly, tell you which matter most, and recommend the least that will make a difference. &pound;50, taken off any treatment you book.</p>
+        </div>
+        <div class="right">
+          <a class="btn" href="#book">Book a consultation <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+          <a class="btn line" href="#treatments">See all treatments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= JOURNEY ================= -->
+<div class="view" data-view="journey" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">Your journey</p><h1 tabindex="-1">From first visit to final review</h1></div>
+      <p class="intro">Four steps, the same for every treatment. Nothing is booked until step two, and nothing is injected at step one.</p>
+    </div>
+    <div class="journey-frame">
+      <img src="img/journey.jpg" width="1800" height="1012" alt="A calm corridor with limewash walls and softly lit arched doorways." loading="lazy">
+      <div class="journey-top">
+        <div class="chips"><span class="chip">Skin analysis</span><span class="chip">Medical history</span><span class="chip">Written plan</span><span class="chip">Aftercare kit</span><span class="chip">Two-week review</span></div>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">01</span><h3>Consultation</h3><p>45 minutes on your history, what's bothering you, and your skin under proper light.</p></div>
+        <div class="step"><span class="n">02</span><h3>Treatment plan</h3><p>A written plan with costs, expected results, and what happens if you do nothing.</p></div>
+        <div class="step"><span class="n">03</span><h3>Treatment session</h3><p>In a private room, with the same clinician who assessed you.</p></div>
+        <div class="step"><span class="n">04</span><h3>Aftercare &amp; review</h3><p>Written aftercare, a direct number, and a follow-up at two weeks.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="shell">
+      <div class="stage">
+        <span class="n">01</span>
+        <div><h3>Consultation</h3><p>The only appointment everyone has. It costs &pound;50, and that comes off your first treatment.</p></div>
+        <dl><div class="kv"><dt>Length</dt><dd>45 minutes</dd></div><div class="kv"><dt>With</dt><dd>The clinician who will treat you</dd></div><div class="kv"><dt>Bring</dt><dd>A list of medication and current skincare</dd></div><div class="kv"><dt>Arrive</dt><dd>Without makeup, if you can</dd></div></dl>
+      </div>
+      <div class="stage">
+        <span class="n">02</span>
+        <div><h3>Treatment plan</h3><p>Emailed within two working days. It's yours to keep, whether or not you book with us.</p></div>
+        <dl><div class="kv"><dt>Includes</dt><dd>Recommendation, alternatives, costs</dd></div><div class="kv"><dt>Also</dt><dd>What it won't do, and realistic timelines</dd></div><div class="kv"><dt>Injectables</dt><dd>A minimum of 48 hours to decide</dd></div></dl>
+      </div>
+      <div class="stage">
+        <span class="n">03</span>
+        <div><h3>Treatment session</h3><p>Photographs before, numbing where it helps, and time afterwards to sit and ask questions.</p></div>
+        <dl><div class="kv"><dt>Length</dt><dd>30 to 75 minutes</dd></div><div class="kv"><dt>Room</dt><dd>Private, never shared</dd></div><div class="kv"><dt>Leave with</dt><dd>Written aftercare and a direct number</dd></div></dl>
+      </div>
+      <div class="stage">
+        <span class="n">04</span>
+        <div><h3>Aftercare &amp; review</h3><p>We see you again at two weeks to check how your skin has settled, and adjust if needed.</p></div>
+        <dl><div class="kv"><dt>When</dt><dd>Two weeks after treatment</dd></div><div class="kv"><dt>Cost</dt><dd>Included</dd></div><div class="kv"><dt>Then</dt><dd>Maintenance only if it makes sense</dd></div></dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FAQ ================= -->
+<div class="view" data-view="faq" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">FAQ</p><h1 tabindex="-1">Frequently asked questions</h1></div>
+      <p class="intro">Can't find your answer? Book a consultation. If we can't help, we'll say so and refund the fee.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-img"><img src="img/faq.jpg" width="1230" height="1700" alt="Editorial portrait of a woman with slicked-back hair against a deep plaster wall." loading="lazy"></div>
+      <div>
+        <div class="faq-group">
+          <p class="label">Choosing a treatment</p>
+          <details><summary>How do I know which treatment is right for me?<span class="plus" aria-hidden="true"></span></summary><p class="ans">You don't need to know before you come in. Tell us what's bothering you; we'll assess your skin and recommend a plan, which may be as simple as a change in routine.</p></details>
+          <details><summary>Are your treatments suitable for all skin tones?<span class="plus" aria-hidden="true"></span></summary><p class="ans">Yes. Peel depths and microneedling settings are chosen to lower the risk of post-inflammatory pigmentation in deeper skin tones.</p></details>
+          <details><summary>Will I look like I've had something done?<span class="plus" aria-hidden="true"></span></summary><p class="ans">Not if we've done our job. Looking "done" usually comes from too much product placed too quickly. We work conservatively and review before adding.</p></details>
+        </div>
+        <div class="faq-group">
+          <p class="label">On the day and after</p>
+          <details><summary>How long does a typical appointment take?<span class="plus" aria-hidden="true"></span></summary><p class="ans">Consultations run for 45 minutes. Most treatments take 30 to 75 minutes, including numbing where it's needed.</p></details>
+          <details><summary>Is there any downtime after treatment?<span class="plus" aria-hidden="true"></span></summary><p class="ans">It depends on the treatment. Facials have none; microneedling brings a day or two of redness; deeper peels can mean up to five days of flaking. Each treatment page lists it.</p></details>
+          <details><summary>When will I see results?<span class="plus" aria-hidden="true"></span></summary><p class="ans">Facials show the same day. Collagen treatments build over six to twelve weeks. Your written plan sets out the timeline for your treatment.</p></details>
+          <details><summary>What if I'm unhappy with the result?<span class="plus" aria-hidden="true"></span></summary><p class="ans">That's what the two-week review is for. Call the clinician who treated you directly; you won't be passed to a front desk.</p></details>
+        </div>
+        <div class="faq-group">
+          <p class="label">Booking and pricing</p>
+          <details><summary>Why don't you list prices for anti-wrinkle treatment?<span class="plus" aria-hidden="true"></span></summary><p class="ans">It's a prescription-only medicine, and UK rules don't allow those to be advertised to the public. We discuss options and costs in person, after a prescriber assessment.</p></details>
+          <details><summary>Do I have to buy a course?<span class="plus" aria-hidden="true"></span></summary><p class="ans">No. Some treatments work better as a course and we'll tell you when that's true, but there are no packages and no pressure to commit up front.</p></details>
+          <details><summary>What's your cancellation policy?<span class="plus" aria-hidden="true"></span></summary><p class="ans">A &pound;50 deposit holds any appointment and comes off the cost on the day. You get it back if you give us 48 hours' notice.</p></details>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="shell">
+      <div class="band">
+        <div>
+          <p class="label" style="color:rgba(243,232,218,.62)">Still have a question?</p>
+          <h2 style="margin-top:var(--s3)">Ask us in person</h2>
+          <p>A consultation is the best place for anything this page doesn't answer. If we can't help, we'll say so and refund the fee.</p>
+        </div>
+        <div class="right">
+          <a class="btn" href="#book">Book a consultation <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></a>
+          <a class="btn line" href="#treatments">See all treatments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= BOOK ================= -->
+<div class="view" data-view="book" hidden>
+  <div class="shell">
+    <div class="page-head">
+      <div><p class="label">Book</p><h1 tabindex="-1">Book a consultation</h1></div>
+      <p class="intro">45 minutes, &pound;50, taken off any treatment you go on to book. Send a request and we'll reply with available times within one working day.</p>
+    </div>
+    <div class="visit">
+      <div class="visit-img"><img src="img/room-arch.jpg" width="1160" height="1440" alt="Treatment room with a backlit arch of glossy oxblood tile, a red marble basin and a cream treatment bed." loading="lazy"></div>
+      <div class="book">
+        <div>
+          <p class="label">Consultation request</p>
+          <h2 id="bkTitle" tabindex="-1" style="margin-top:var(--s3)">Choose a treatment</h2>
+          <ol class="bk-steps" id="bkSteps" aria-label="Booking steps">
+            <li aria-current="step">Treatment</li><li>Date &amp; time</li><li>Your details</li>
+          </ol>
+        </div>
+        <form id="bookForm" novalidate>
+          <fieldset class="bk-step" data-step="1">
+            <legend class="sr">Choose a treatment</legend>
+            <div class="opts" id="bkOpts"></div>
+            <div class="bk-nav"><button class="btn" type="button" data-next>Choose a time <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button></div>
+          </fieldset>
+
+          <fieldset class="bk-step" data-step="2" hidden>
+            <legend class="sr">Choose a date and time</legend>
+            <div class="bk-sub"><span id="bkMonth"></span><span>45-minute consultation</span></div>
+            <div class="days" id="bkDays" role="radiogroup" aria-label="Date"></div>
+            <div class="bk-sub"><span id="bkDayLabel"></span><span id="bkFree"></span></div>
+            <div class="slots" id="bkSlots" role="radiogroup" aria-label="Time"></div>
+            <p class="bk-err" id="bkSlotErr" role="alert" hidden></p>
+            <div class="bk-nav">
+              <button class="btn ghost-dark" type="button" data-back>Back</button>
+              <button class="btn" type="button" data-next>Your details <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button>
+            </div>
+          </fieldset>
+
+          <fieldset class="bk-step" data-step="3" hidden>
+            <legend class="sr">Your details</legend>
+            <div class="row2">
+              <div class="field"><label for="bkName">Full name</label><input id="bkName" name="name" autocomplete="name" required><span class="err" id="bkNameErr" hidden></span></div>
+              <div class="field"><label for="bkEmail">Email</label><input id="bkEmail" name="email" type="email" autocomplete="email" required><span class="err" id="bkEmailErr" hidden></span></div>
+            </div>
+            <div class="field"><label for="bkPhone">Mobile <span style="opacity:.7">(optional)</span></label><input id="bkPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel"><span class="hint">Only used to text you if we need to move your appointment.</span></div>
+            <div class="field"><label for="bkNotes">Anything we should know? <span style="opacity:.7">(optional)</span></label><textarea id="bkNotes" name="notes"></textarea><span class="hint">A concern, a date you're working towards, or medication you take.</span></div>
+            <dl class="bk-summary" id="bkSummary"></dl>
+            <div class="bk-nav">
+              <button class="btn ghost-dark" type="button" data-back>Back</button>
+              <button class="btn" type="submit">Request this appointment <span class="dot"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span></button>
+            </div>
+          </fieldset>
+
+          <div class="bk-step bk-done" data-step="4" hidden>
+            <span class="tickbig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <h3 id="bkDoneTitle" tabindex="-1">Request received</h3>
+            <p id="bkDoneText" style="opacity:.82; max-width:48ch"></p>
+            <dl class="bk-summary" id="bkDoneSummary"></dl>
+            <p style="font-size:13px; opacity:.62">This is a demo, so nothing has been sent and no appointment has been held.</p>
+            <div class="bk-nav"><button class="btn ghost-dark" type="button" id="bkAgain">Start another request</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="hours">
+      <div class="panel"><h3>Address</h3><dl><div class="kv"><dt>Street</dt><dd>38 Elystan Street</dd></div><div class="kv"><dt>Area</dt><dd>Chelsea, London SW3 3NT</dd></div><div class="kv"><dt>Entrance</dt><dd>Black door, ground floor</dd></div></dl></div>
+      <div class="panel"><h3>Hours</h3><dl><div class="kv"><dt>Tue&ndash;Fri</dt><dd>9am &ndash; 7pm</dd></div><div class="kv"><dt>Saturday</dt><dd>9am &ndash; 4pm</dd></div><div class="kv"><dt>Sun &amp; Mon</dt><dd>Closed</dd></div></dl></div>
+      <div class="panel"><h3>Getting here</h3><dl><div class="kv"><dt>Tube</dt><dd>South Kensington, 8 min</dd></div><div class="kv"><dt>Also</dt><dd>Sloane Square, 10 min</dd></div><div class="kv"><dt>Telephone</dt><dd>020 7000 0000</dd></div></dl></div>
+    </div>
+  </div>
+  <div style="height:var(--s8)"></div>
+</div>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot">
+      <div><a class="brand" href="#home">Orris <small>Clinic</small></a><p style="max-width:32ch">A consultation-first skin clinic on the Chelsea and South Kensington border.</p></div>
+      <div><p class="label">Pages</p><a href="#about">About</a><a href="#treatments">Treatments</a><a href="#concerns">Concerns</a><a href="#journey">Journey</a><a href="#faq">FAQ</a></div>
+      <div><p class="label">Visit</p><p>38 Elystan Street<br>London SW3 3NT</p><a href="#book">Book a consultation</a></div>
+      <div><p class="label">Contact</p><p>020 7000 0000</p><p>hello@orris.example</p></div>
+    </div>
+    <p class="colophon">Demonstration site by 2204 Labs. Orris is a fictional clinic; names, prices and imagery are illustrative.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var T = [
+    { slug: "clinical-facial", name: "Clinical Facial", short: "Cleanse, extract and treat, tailored to your skin on the day.",
+      price: "£110", img: "t-facial", tiles: ["t-facial", "tx-facial-2", "tx-facial-3"],
+      info: [["Duration", "60 minutes"], ["Downtime", "None"], ["Sessions", "Monthly, as maintenance"], ["From", "£110"]],
+      desc: "A deep cleanse, enzyme exfoliation and extractions, followed by LED and an active mask chosen for how your skin is that day.",
+      forr: "Dullness, congestion, dehydration, and a reset before an event.",
+      after: "Skip actives and makeup for the rest of the day. SPF 50 the next morning.",
+      caution: "Not suitable during an active cold sore or within five days of a peel." },
+    { slug: "microneedling", name: "Microneedling", short: "Collagen induction for texture, scarring and fine lines.",
+      price: "£220", img: "t-skin", tiles: ["t-skin", "tx-micro-2", "tx-micro-3"],
+      info: [["Duration", "75 minutes"], ["Downtime", "24–48 hours of redness"], ["Sessions", "Three, 4–6 weeks apart"], ["From", "£220"]],
+      desc: "Fine needles create controlled micro-channels in the skin, prompting it to lay down new collagen over the following weeks. Depth is set area by area.",
+      forr: "Acne scarring, enlarged pores, uneven texture, early fine lines.",
+      after: "Mineral SPF only for 48 hours. No retinoids, acids, gym or sauna for 72 hours.",
+      caution: "We delay treatment during active acne, eczema flares or isotretinoin use." },
+    { slug: "chemical-peel", name: "Chemical Peel", short: "Resurfacing for pigmentation, congestion and dullness.",
+      price: "£140", img: "t-peel", tiles: ["t-peel", "tx-peel-2", "tx-peel-3"],
+      info: [["Duration", "45 minutes"], ["Downtime", "None to five days"], ["Sessions", "Three to six, fortnightly"], ["From", "£140"]],
+      desc: "An acid solution is applied in timed layers to lift dead cells and even tone. We choose the depth after a patch test, and are conservative on deeper skin tones.",
+      forr: "Melasma, sun damage, post-acne marks, oiliness.",
+      after: "Let the skin flake naturally; don't pick. Strict SPF for four weeks.",
+      caution: "Two weeks' prep with a tyrosinase inhibitor is required for melasma protocols." },
+    { slug: "profhilo", name: "Profhilo & Skin Boosters", short: "Hydration and laxity treated with hyaluronic acid, not volume.",
+      price: "£350", img: "detail-neck", tiles: ["detail-neck", "tx-boost-2", "tx-boost-3"],
+      info: [["Duration", "30 minutes"], ["Downtime", "Small bumps for 24 hours"], ["Sessions", "Two, four weeks apart"], ["From", "£350"]],
+      desc: "Five small injection points on each side spread a high-concentration hyaluronic acid under the skin, improving firmness and hydration without changing your features.",
+      forr: "Crêpey skin on the face, neck and décolletage; dehydration that skincare doesn't reach.",
+      after: "Avoid massage, makeup and exercise for 12 hours.",
+      caution: "Given only after a face-to-face assessment with a prescribing clinician." },
+    { slug: "anti-wrinkle-filler", name: "Anti-wrinkle & Filler", short: "Assessed face by face by a prescribing clinician.",
+      price: "Consultation", img: "t-inject", tiles: ["t-inject", "tx-inject-2", "tx-inject-3"],
+      info: [["Duration", "45 minutes"], ["Downtime", "Discussed at assessment"], ["Sessions", "Reviewed at two weeks"], ["Price", "Given at consultation"]],
+      desc: "Both are prescription-led treatments. We assess your whole face, explain the options in person, and never treat on the day of a first consultation.",
+      forr: "Expression lines, loss of volume and contour, assessed in context rather than feature by feature.",
+      after: "Given in writing at your appointment, with a direct number for the clinician who treated you.",
+      caution: "Prescription-only medicines can't be advertised in the UK, so we don't list brands or prices here." }
+  ];
+  var C = [
+    { slug: "acne", name: "Acne & congestion", desc: "Breakouts, blackheads and oiliness, including adult acne along the jaw.", note: "We calm active acne first, and treat scarring once skin has settled.", t: ["clinical-facial", "chemical-peel"] },
+    { slug: "pigmentation", name: "Pigmentation & melasma", desc: "Sun spots, uneven tone, melasma and the marks old breakouts leave behind.", note: "Melasma needs two weeks of skin preparation before any peel.", t: ["chemical-peel", "clinical-facial"] },
+    { slug: "lines", name: "Fine lines & wrinkles", desc: "Expression lines around the eyes and forehead, and early fine lines elsewhere.", note: "Anti-wrinkle options are only discussed at an in-person prescriber consultation.", t: ["anti-wrinkle-filler", "microneedling", "profhilo"] },
+    { slug: "laxity", name: "Laxity & crêpey skin", desc: "Loss of firmness and bounce on the face, neck and décolletage.", note: "Usually a two-session plan, reviewed at four weeks.", t: ["profhilo", "microneedling"] },
+    { slug: "texture", name: "Texture & scarring", desc: "Acne scars, enlarged pores and rough, uneven texture.", note: "Results build over two to three months as collagen forms.", t: ["microneedling", "chemical-peel"] },
+    { slug: "dullness", name: "Dullness & dehydration", desc: "Skin that looks tired or flat, or feels tight despite moisturiser.", note: "Often the simplest to improve, and a good place to start.", t: ["clinical-facial", "profhilo"] },
+    { slug: "volume", name: "Volume loss", desc: "Hollowing in the cheeks and temples, and changes in facial contour.", note: "Assessed face by face, never feature by feature.", t: ["anti-wrinkle-filler"] }
+  ];
+  var PAGES = { home: "Orris Clinic", about: "About", treatments: "Treatments", concerns: "Concerns", journey: "Journey", faq: "FAQ", book: "Book a consultation" };
+  // older in-page anchors still land somewhere sensible
+  var ALIAS = { "": "home", top: "home", approach: "about", people: "about", visit: "book", main: "home" };
+
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var pad = function (i) { return (i + 1 < 10 ? "0" : "") + (i + 1); };
+  var $ = function (id) { return document.getElementById(id); };
+  var fromPrice = function (t) { return t.price === "Consultation" ? t.price : "from " + t.price; };
+
+  $("rail").innerHTML = T.map(function (t, i) {
+    return '<a class="card" role="listitem" href="#' + t.slug + '">' +
+      '<img src="img/' + t.img + '.jpg" alt="" loading="lazy">' +
+      '<div class="card-top"><h3>' + esc(t.name) + '</h3><span class="num">' + pad(i) + '</span></div>' +
+      '<div class="card-foot"><p>' + esc(t.short) + '</p><span class="price">' + esc(fromPrice(t)) + '</span></div></a>';
+  }).join("");
+  $("guideBody").innerHTML = T.map(function (t) {
+    return '<tr><td><a href="#' + t.slug + '">' + esc(t.name) + '</a></td><td class="hide-sm">' + esc(t.info[0][1]) +
+      '</td><td class="hide-sm">' + esc(t.info[1][1]) + '</td><td class="num-col">' + esc(t.price) + '</td></tr>';
+  }).join("");
+  // concerns
+  var chevron = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 4l4 4-4 4"/></svg>';
+  var bySlug = {}; T.forEach(function (t) { bySlug[t.slug] = t; });
+  $("concernList").innerHTML = C.map(function (c) {
+    return '<article class="concern" id="concern-' + c.slug + '"><h2>' + esc(c.name) + '</h2>' +
+      '<div><p class="desc">' + esc(c.desc) + '</p><p class="note">' + esc(c.note) + '</p></div>' +
+      '<div class="helps"><p class="label">Treatments that can help</p><div class="tchips">' +
+      c.t.map(function (s) { return '<a class="tchip" href="#' + s + '">' + esc(bySlug[s].name) + chevron + '</a>'; }).join("") +
+      '</div></div></article>';
+  }).join("");
+  $("homeConcerns").innerHTML = C.map(function (c) { return '<a class="tchip" href="#concern-' + c.slug + '">' + esc(c.name) + '</a>'; }).join("");
+
+  // carousel
+  var rail = $("rail");
+  function railStep(dir) {
+    var card = rail.querySelector(".card");
+    var w = card ? card.getBoundingClientRect().width + 12 : 300;
+    rail.scrollBy({ left: dir * w, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function railState() {
+    $("railPrev").disabled = rail.scrollLeft < 4;
+    $("railNext").disabled = rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 4;
+  }
+  $("railPrev").addEventListener("click", function () { railStep(-1); });
+  $("railNext").addEventListener("click", function () { railStep(1); });
+  rail.addEventListener("scroll", railState, { passive: true });
+  window.addEventListener("resize", railState);
+
+  // mobile menu
+  var btn = $("menuBtn"), mnav = $("mobileNav");
+  function closeMenu() { mnav.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var open = mnav.hidden;
+    mnav.hidden = !open; btn.setAttribute("aria-expanded", String(open));
+  });
+  document.addEventListener("click", function (e) { if (!mnav.contains(e.target) && e.target !== btn) closeMenu(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mnav.hidden) { closeMenu(); btn.focus(); } });
+
+  function fillDetail(t, idx) {
+    var next = T[(idx + 1) % T.length];
+    $("dName").textContent = t.name;
+    $("dTitle").textContent = t.name;
+    $("dInfo").innerHTML = t.info.map(function (r) { return '<div class="kv"><dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join("");
+    $("dDesc").textContent = t.desc;
+    $("dFor").textContent = t.forr;
+    $("dAfter").textContent = t.after;
+    $("dCaution").textContent = t.caution;
+    $("dTiles").innerHTML = t.tiles.map(function (src, i) {
+      return '<figure class="' + (i === 2 ? "wide" : "") + '"><img src="img/' + src + '.jpg" alt=""></figure>';
+    }).join("");
+    $("dNext").href = "#" + next.slug;
+    $("dNext").innerHTML = esc(next.name) + " &rarr;";
+    $("dBook").dataset.slug = t.slug;
+  }
+
+  var first = true;
+  function route() {
+    var key = location.hash.slice(1);
+    if (key in ALIAS) key = ALIAS[key];
+    var idx = T.findIndex(function (t) { return t.slug === key; });
+    var concernEl = key.indexOf("concern-") === 0 ? document.getElementById(key) : null;
+    var view = idx >= 0 ? "detail" : concernEl ? "concerns" : (PAGES[key] ? key : "home");
+    if (idx >= 0) fillDetail(T[idx], idx);
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-view]"), function (v) {
+      var on = v.getAttribute("data-view") === view;
+      v.hidden = !on;
+      if (on) { v.style.animation = "none"; void v.offsetWidth; v.style.animation = ""; }
+    });
+    var navKey = view === "detail" ? "treatments" : view;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-nav]"), function (a) {
+      if (a.getAttribute("data-nav") === navKey) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    document.body.classList.toggle("is-home", view === "home");
+    document.title = view === "home" ? "Orris Skin Clinic" : (idx >= 0 ? T[idx].name : PAGES[view]) + " · Orris Clinic";
+    closeMenu();
+    window.scrollTo(0, 0);
+    if (concernEl) {
+      requestAnimationFrame(function () {
+        concernEl.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+        concernEl.classList.remove("flash"); void concernEl.offsetWidth; concernEl.classList.add("flash");
+      });
+    }
+    if (view === "treatments") railState();
+    if (!first && !concernEl) {
+      var h = document.querySelector('[data-view="' + view + '"] h1');
+      if (h) h.focus({ preventScroll: true });
+    }
+    first = false;
+  }
+  window.addEventListener("hashchange", route);
+
+  // hero slideshow
+  (function () {
+    var slides = Array.prototype.slice.call(document.querySelectorAll("#slides .slide"));
+    if (slides.length < 2) return;
+    var n = slides.length, i = 0, timer = null, userPaused = false, held = false;
+    var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var dots = $("slideDots"), pauseBtn = $("slidePause"), controls = document.querySelector(".hero-controls");
+    var playIcon = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6a.6.6 0 00.9.5l7.4-4.8a.6.6 0 000-1L5.9 2.7a.6.6 0 00-.9.5z"/></svg>';
+    var pauseIcon = pauseBtn.innerHTML;
+    dots.innerHTML = slides.map(function (_, k) { return '<button class="hc-dot" type="button" aria-label="Show photograph ' + (k + 1) + '"></button>'; }).join("");
+    var dotEls = dots.querySelectorAll(".hc-dot");
+
+    function show(k) {
+      slides[i].classList.remove("is-on"); slides[i].setAttribute("aria-hidden", "true");
+      i = (k + n) % n;
+      slides[i].classList.add("is-on"); slides[i].removeAttribute("aria-hidden");
+      Array.prototype.forEach.call(dotEls, function (d, j) { d.setAttribute("aria-current", j === i ? "true" : "false"); });
+      $("slideCount").textContent = pad(i) + " / " + pad(n - 1);
+      $("slideCap").innerHTML = slides[i].getAttribute("data-cap");
+    }
+    function onHome() { return !document.querySelector('[data-view="home"]').hidden; }
+    function stop() { clearInterval(timer); timer = null; }
+    function start() {
+      stop();
+      if (reduced || userPaused || held || document.hidden || !onHome()) return;
+      timer = setInterval(function () { show(i + 1); }, 3500);
+    }
+    function setPaused(p) {
+      userPaused = p;
+      pauseBtn.setAttribute("aria-label", p ? "Play slideshow" : "Pause slideshow");
+      pauseBtn.innerHTML = p ? playIcon : pauseIcon;
+      start();
+    }
+    $("slidePrev").addEventListener("click", function () { show(i - 1); start(); });
+    $("slideNext").addEventListener("click", function () { show(i + 1); start(); });
+    Array.prototype.forEach.call(dotEls, function (d, j) { d.addEventListener("click", function () { show(j); start(); }); });
+    pauseBtn.addEventListener("click", function () { setPaused(!userPaused); });
+    // hold while someone is using the controls, so the photo doesn't change under them
+    controls.addEventListener("mouseenter", function () { held = true; stop(); });
+    controls.addEventListener("mouseleave", function () { held = false; start(); });
+    controls.addEventListener("focusin", function () { held = true; stop(); });
+    controls.addEventListener("focusout", function (e) { if (!controls.contains(e.relatedTarget)) { held = false; start(); } });
+    document.addEventListener("visibilitychange", start);
+    window.addEventListener("hashchange", start);
+    if (reduced) setPaused(true);
+    show(0); start();
+  })();
+  function onScroll() { document.body.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  route();
+
+  // ---------- booking flow (demo: nothing leaves the page) ----------
+  var bk = { step: 1, treat: "consultation", day: null, time: null };
+  var CONSULT = { slug: "consultation", name: "Consultation only", short: "Not sure yet? Start here and we'll recommend a plan.", price: "£50" };
+  var OPTS = [CONSULT].concat(T);
+  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+  $("bkOpts").innerHTML = OPTS.map(function (t) {
+    return '<label class="opt"><input type="radio" name="bkTreat" value="' + t.slug + '"' + (t.slug === bk.treat ? " checked" : "") + '>' +
+      '<span class="tick" aria-hidden="true"></span><span><b>' + esc(t.name) + '</b><small>' + esc(t.short) + '</small></span>' +
+      '<span class="p">' + esc(t.slug === "consultation" ? t.price : fromPrice(t)) + '</span></label>';
+  }).join("");
+
+  // open days: Tuesday to Saturday, the next 14 of them
+  function openDays() {
+    var out = [], d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + 1);
+    while (out.length < 14) { var w = d.getDay(); if (w >= 2 && w <= 6) out.push(new Date(d)); d.setDate(d.getDate() + 1); }
+    return out;
+  }
+  function key(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function slotsFor(d) {
+    var times = d.getDay() === 6
+      ? ["09:00","09:45","10:30","11:15","12:00","13:30","14:15","15:00"]
+      : ["09:00","09:45","10:30","11:15","12:00","13:30","14:15","15:00","15:45","16:30","17:15","18:00"];
+    // stable pseudo-availability so the same day always shows the same gaps
+    var seed = 0, k = key(d); for (var j = 0; j < k.length; j++) seed = (seed * 31 + k.charCodeAt(j)) >>> 0;
+    var taken = times.map(function (_, n) { seed = (seed * 1103515245 + 12345) >>> 0; return (seed >>> 16) % 100 < 45; });
+    if (taken.filter(function (x) { return !x; }).length < 3) { taken[1] = taken[4] = taken[7] = false; }
+    return times.map(function (t, n) { return { t: t, free: !taken[n] }; });
+  }
+  var days = openDays();
+  $("bkDays").innerHTML = days.map(function (d, n) {
+    return '<label class="day"><input type="radio" name="bkDay" value="' + n + '">' +
+      '<span class="dw">' + DAYS[d.getDay()] + '</span><span class="dn">' + d.getDate() + '</span><span class="dm">' + MONTHS[d.getMonth()].slice(0, 3) + '</span></label>';
+  }).join("");
+  function fmt(d) { return DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()]; }
+  function drawSlots() {
+    var d = days[bk.day], list = slotsFor(d);
+    $("bkMonth").textContent = MONTHS[d.getMonth()] + " " + d.getFullYear();
+    $("bkDayLabel").textContent = fmt(d);
+    $("bkFree").textContent = list.filter(function (x) { return x.free; }).length + " times available";
+    $("bkSlots").innerHTML = list.map(function (x) {
+      return '<label class="slot"><input type="radio" name="bkTime" value="' + x.t + '"' + (x.free ? "" : " disabled") +
+        (x.t === bk.time ? " checked" : "") + '><span>' + x.t + '</span>' + (x.free ? "" : '<span class="sr"> (booked)</span>') + '</label>';
+    }).join("");
+  }
+  function pickDay(n) {
+    bk.day = n; bk.time = null;
+    var r = document.querySelector('input[name="bkDay"][value="' + n + '"]'); if (r) r.checked = true;
+    drawSlots();
+  }
+  pickDay(0);
+
+  $("bookForm").addEventListener("change", function (e) {
+    var el = e.target;
+    if (el.name === "bkTreat") bk.treat = el.value;
+    if (el.name === "bkDay") pickDay(+el.value);
+    if (el.name === "bkTime") { bk.time = el.value; $("bkSlotErr").hidden = true; }
+  });
+
+  var TITLES = { 1: "Choose a treatment", 2: "Choose a date and time", 3: "Your details", 4: "" };
+  function summaryHTML() {
+    var t = OPTS.filter(function (o) { return o.slug === bk.treat; })[0];
+    return '<div class="kv"><dt>Treatment</dt><dd>' + esc(t.name) + '</dd></div>' +
+      '<div class="kv"><dt>When</dt><dd>' + esc(fmt(days[bk.day])) + ', ' + esc(bk.time || "") + '</dd></div>' +
+      '<div class="kv"><dt>With</dt><dd>' + (/anti-wrinkle|profhilo/.test(bk.treat) ? "A prescribing clinician" : "The clinician best suited to you") + '</dd></div>' +
+      '<div class="kv"><dt>Deposit</dt><dd>£50, taken off your treatment</dd></div>';
+  }
+  function goStep(n, focus) {
+    bk.step = n;
+    Array.prototype.forEach.call(document.querySelectorAll("#bookForm [data-step]"), function (f) { f.hidden = +f.getAttribute("data-step") !== n; });
+    Array.prototype.forEach.call($("bkSteps").children, function (li, j) {
+      li.classList.toggle("done", j + 1 < n);
+      if (j + 1 === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+    });
+    $("bkSteps").hidden = n === 4;
+    $("bkTitle").hidden = n === 4;
+    $("bkTitle").textContent = TITLES[n];
+    if (n === 3) $("bkSummary").innerHTML = summaryHTML();
+    if (focus) (n === 4 ? $("bkDoneTitle") : $("bkTitle")).focus();
+  }
+  $("bookForm").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-next],[data-back]");
+    if (!b) return;
+    if (b.hasAttribute("data-back")) return goStep(bk.step - 1, true);
+    if (bk.step === 2 && !bk.time) {
+      $("bkSlotErr").textContent = "Choose a time to continue. Crossed-out times are already booked.";
+      $("bkSlotErr").hidden = false; return;
+    }
+    goStep(bk.step + 1, true);
+  });
+  $("bookForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (bk.step !== 3) return;
+    var ok = true;
+    function check(id, cond, msg) {
+      var el = $(id), err = $(id + "Err");
+      if (!cond) { err.textContent = msg; err.hidden = false; el.setAttribute("aria-invalid", "true"); el.setAttribute("aria-describedby", id + "Err"); if (ok) el.focus(); ok = false; }
+      else { err.hidden = true; el.removeAttribute("aria-invalid"); }
+    }
+    check("bkName", $("bkName").value.trim().length > 1, "Enter your full name.");
+    check("bkEmail", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("bkEmail").value.trim()), "Enter an email address like name@example.com.");
+    if (!ok) return;
+    var firstName = $("bkName").value.trim().split(" ")[0];
+    $("bkDoneText").textContent = "Thank you, " + firstName + ". A real Orris site would confirm by email within one working hour and send a short medical questionnaire to fill in before you arrive.";
+    $("bkDoneSummary").innerHTML = summaryHTML();
+    goStep(4, true);
+  });
+  $("bkAgain").addEventListener("click", function () {
+    $("bookForm").reset(); bk.treat = "consultation"; pickDay(0);
+    var r = document.querySelector('input[name="bkTreat"][value="consultation"]'); if (r) r.checked = true;
+    goStep(1, true);
+  });
+  // "Book" from a treatment page starts the flow with that treatment chosen
+  $("dBook").addEventListener("click", function () {
+    var slug = this.dataset.slug, r = document.querySelector('input[name="bkTreat"][value="' + slug + '"]');
+    if (r) { r.checked = true; bk.treat = slug; }
+    if (bk.step === 4) { $("bookForm").reset(); pickDay(0); if (r) r.checked = true; }
+    goStep(1, false);
+  });
+})();
+</script>
+
+</body>
+</html>
