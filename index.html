@@ -152,6 +152,7 @@
 
   .sec-head { display: flex; justify-content: space-between; align-items: end; gap: var(--s5); margin-bottom: var(--s7); flex-wrap: wrap; }
   .sec-head h2 { font-size: clamp(32px, 4.2vw, 56px); line-height: 1.04; }
+  .sec-head.divided { border-top: 1px solid var(--hairline); padding-top: var(--s6); }
 
   /* ---------- buttons ---------- */
   .btn {
@@ -501,7 +502,7 @@
   .concern.flash { animation: flash 1600ms var(--ease); }
   @keyframes flash { 0%, 40% { background: var(--raised); } 100% { background: transparent; } }
   @media (max-width: 900px) { .concern { grid-template-columns: 1fr; gap: var(--s3); } }
-  .concern-row { display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: baseline; margin-top: var(--s6); padding-bottom: clamp(40px, 5vw, 64px); border-bottom: 1px solid var(--hairline); }
+  .concern-row { display: grid; grid-template-columns: 1fr 2.4fr; gap: var(--s6); align-items: baseline; margin-top: var(--s6); }
   @media (max-width: 860px) { .concern-row { grid-template-columns: 1fr; gap: var(--s3); } }
 
   /* ---------- booking flow ---------- */
@@ -711,7 +712,7 @@
 
   <div class="block">
     <div class="shell">
-      <div class="sec-head">
+      <div class="sec-head divided">
         <div><p class="label">Explore Orris</p><h2>Everything, in four places</h2></div>
         <p class="small soft" style="max-width:40ch;">Start wherever makes sense for you. Every page ends in the same place: a consultation, with no obligation to book anything after it.</p>
       </div>
